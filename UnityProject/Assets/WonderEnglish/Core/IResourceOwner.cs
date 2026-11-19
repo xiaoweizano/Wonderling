@@ -1,4 +1,4 @@
-namespace WonderEnglish.Core
+﻿namespace WonderEnglish.Core
 {
     /// <summary>
     /// 可被显式释放的资源持有者。实现必须幂等：重复调用 <see cref="Dispose"/> 不得抛异常。

@@ -1,4 +1,4 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using WonderEnglish.Core;
 
 namespace WonderEnglish.Tests.EditMode

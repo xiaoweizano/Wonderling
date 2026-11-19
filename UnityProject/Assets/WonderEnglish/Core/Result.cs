@@ -1,4 +1,4 @@
-namespace WonderEnglish.Core
+﻿namespace WonderEnglish.Core
 {
     /// <summary>
     /// 表示一次可能失败的操作结果，避免用异常表达正常业务流程分支。

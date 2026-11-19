@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "contentVersion": "0.1.0",
+  "courseId": "animal_001",
+  "title": "Animal Forest — Meet the Animals",
+  "worldId": "animal_forest",
+  "ageRange": "3-6",
+  "durationMinutes": 6,
+  "objectives": [
+    "recognize_cat",
+    "recognize_dog",
+    "recognize_duck"
+  ],
+  "assets": [
+    { "assetId": "fox_welcome", "location": "Audio/Teacher/fox_welcome", "assetType": "audio" },
+    { "assetId": "fox_intro_cat", "location": "Audio/Teacher/fox_intro_cat", "assetType": "audio" },
+    { "assetId": "fox_intro_dog", "location": "Audio/Teacher/fox_intro_dog", "assetType": "audio" },
+    { "assetId": "fox_intro_duck", "location": "Audio/Teacher/fox_intro_duck", "assetType": "audio" },
+    { "assetId": "fox_praise", "location": "Audio/Teacher/fox_praise", "assetType": "audio" },
+    { "assetId": "fox_try_again", "location": "Audio/Teacher/fox_try_again", "assetType": "audio" },
+    { "assetId": "fox_celebrate", "location": "Audio/Teacher/fox_celebrate", "assetType": "audio" },
+    { "assetId": "word_cat", "location": "Audio/Words/word_cat", "assetType": "audio" },
+    { "assetId": "word_dog", "location": "Audio/Words/word_dog", "assetType": "audio" },
+    { "assetId": "word_duck", "location": "Audio/Words/word_duck", "assetType": "audio" },
+    { "assetId": "animal_cat", "location": "Images/Animals/animal_cat", "assetType": "sprite" },
+    { "assetId": "animal_dog", "location": "Images/Animals/animal_dog", "assetType": "sprite" },
+    { "assetId": "animal_duck", "location": "Images/Animals/animal_duck", "assetType": "sprite" },
+    { "assetId": "card_cat_a", "location": "Images/Cards/card_cat_a", "assetType": "sprite" },
+    { "assetId": "card_cat_b", "location": "Images/Cards/card_cat_b", "assetType": "sprite" },
+    { "assetId": "card_dog_a", "location": "Images/Cards/card_dog_a", "assetType": "sprite" },
+    { "assetId": "card_dog_b", "location": "Images/Cards/card_dog_b", "assetType": "sprite" },
+    { "assetId": "card_duck_a", "location": "Images/Cards/card_duck_a", "assetType": "sprite" },
+    { "assetId": "card_duck_b", "location": "Images/Cards/card_duck_b", "assetType": "sprite" }
+  ],
+  "steps": [
+    {
+      "stepId": "welcome",
+      "type": "teacher_intro",
+      "teacherAction": "Greeting",
+      "audioId": "fox_welcome",
+      "next": "teach_cat"
+    },
+    {
+      "stepId": "teach_cat",
+      "type": "word_learning",
+      "teacherAction": "Speaking",
+      "word": "cat",
+      "imageId": "animal_cat",
+      "audioId": "word_cat",
+      "introAudioId": "fox_intro_cat",
+      "next": "listen_cat"
+    },
+    {
+      "stepId": "listen_cat",
+      "type": "listening_choice",
+      "teacherAction": "Guide",
+      "audioId": "word_cat",
+      "options": ["animal_cat", "animal_dog", "animal_duck"],
+      "correctAnswer": "animal_cat",
+      "retryPolicy": { "maxAttempts": 3, "allowSkip": true },
+      "onCorrect": "repeat_cat",
+      "onIncorrect": "listen_cat_retry",
+      "next": "repeat_cat"
+    },
+    {
+      "stepId": "listen_cat_retry",
+      "type": "listening_choice",
+      "teacherAction": "Encourage",
+      "audioId": "fox_try_again",
+      "options": ["animal_cat", "animal_dog", "animal_duck"],
+      "correctAnswer": "animal_cat",
+      "retryPolicy": { "maxAttempts": 2, "allowSkip": true },
+      "next": "repeat_cat"
+    },
+    {
+      "stepId": "repeat_cat",
+      "type": "repeat_speech",
+      "teacherAction": "Listening",
+      "word": "cat",
+      "audioId": "word_cat",
+      "retryPolicy": { "maxAttempts": 2, "allowSkip": true },
+      "next": "teach_dog"
+    },
+    {
+      "stepId": "teach_dog",
+      "type": "word_learning",
+      "teacherAction": "Speaking",
+      "word": "dog",
+      "imageId": "animal_dog",
+      "audioId": "word_dog",
+      "introAudioId": "fox_intro_dog",
+      "next": "listen_dog"
+    },
+    {
+      "stepId": "listen_dog",
+      "type": "listening_choice",
+      "teacherAction": "Guide",
+      "audioId": "word_dog",
+      "options": ["animal_dog", "animal_cat", "animal_duck"],
+      "correctAnswer": "animal_dog",
+      "retryPolicy": { "maxAttempts": 3, "allowSkip": true },
+      "onCorrect": "repeat_dog",
+      "onIncorrect": "listen_dog_retry",
+      "next": "repeat_dog"
+    },
+    {
+      "stepId": "listen_dog_retry",
+      "type": "listening_choice",
+      "teacherAction": "Encourage",
+      "audioId": "fox_try_again",
+      "options": ["animal_dog", "animal_cat", "animal_duck"],
+      "correctAnswer": "animal_dog",
+      "retryPolicy": { "maxAttempts": 2, "allowSkip": true },
+      "next": "repeat_dog"
+    },
+    {
+      "stepId": "repeat_dog",
+      "type": "repeat_speech",
+      "teacherAction": "Listening",
+      "word": "dog",
+      "audioId": "word_dog",
+      "retryPolicy": { "maxAttempts": 2, "allowSkip": true },
+      "next": "teach_duck"
+    },
+    {
+      "stepId": "teach_duck",
+      "type": "word_learning",
+      "teacherAction": "Speaking",
+      "word": "duck",
+      "imageId": "animal_duck",
+      "audioId": "word_duck",
+      "introAudioId": "fox_intro_duck",
+      "next": "listen_duck"
+    },
+    {
+      "stepId": "listen_duck",
+      "type": "listening_choice",
+      "teacherAction": "Guide",
+      "audioId": "word_duck",
+      "options": ["animal_duck", "animal_cat", "animal_dog"],
+      "correctAnswer": "animal_duck",
+      "retryPolicy": { "maxAttempts": 3, "allowSkip": true },
+      "onCorrect": "repeat_duck",
+      "onIncorrect": "listen_duck_retry",
+      "next": "repeat_duck"
+    },
+    {
+      "stepId": "listen_duck_retry",
+      "type": "listening_choice",
+      "teacherAction": "Encourage",
+      "audioId": "fox_try_again",
+      "options": ["animal_duck", "animal_cat", "animal_dog"],
+      "correctAnswer": "animal_duck",
+      "retryPolicy": { "maxAttempts": 2, "allowSkip": true },
+      "next": "repeat_duck"
+    },
+    {
+      "stepId": "repeat_duck",
+      "type": "repeat_speech",
+      "teacherAction": "Listening",
+      "word": "duck",
+      "audioId": "word_duck",
+      "retryPolicy": { "maxAttempts": 2, "allowSkip": true },
+      "next": "match_animals"
+    },
+    {
+      "stepId": "match_animals",
+      "type": "drag_match",
+      "teacherAction": "Guide",
+      "pairs": [
+        { "leftId": "animal_cat", "rightId": "animal_cat" },
+        { "leftId": "animal_dog", "rightId": "animal_dog" },
+        { "leftId": "animal_duck", "rightId": "animal_duck" }
+      ],
+      "retryPolicy": { "maxAttempts": 3, "allowSkip": true },
+      "next": "memory_game"
+    },
+    {
+      "stepId": "memory_game",
+      "type": "memory_cards",
+      "teacherAction": "Guide",
+      "cardIds": [
+        "card_cat_a", "card_cat_b",
+        "card_dog_a", "card_dog_b",
+        "card_duck_a", "card_duck_b"
+      ],
+      "retryPolicy": { "maxAttempts": 5, "allowSkip": true },
+      "next": "challenge"
+    },
+    {
+      "stepId": "challenge",
+      "type": "challenge",
+      "teacherAction": "Thinking",
+      "subSteps": ["listen_cat", "listen_dog", "listen_duck"],
+      "retryPolicy": { "maxAttempts": 3, "allowSkip": true },
+      "next": "complete"
+    },
+    {
+      "stepId": "complete",
+      "type": "level_complete",
+      "teacherAction": "Celebrate",
+      "audioId": "fox_celebrate",
+      "reward": { "stars": 3 },
+      "next": null
+    }
+  ]
+}

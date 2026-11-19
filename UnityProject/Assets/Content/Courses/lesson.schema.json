@@ -1,0 +1,233 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://wonderenglish.local/schema/lesson.schema.json",
+  "title": "Wonder English 课程定义",
+  "description": "课程 JSON 的正式结构。引擎加载时必须先跑语义校验，不能只检查 JSON 语法。",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "courseId",
+    "title",
+    "worldId",
+    "ageRange",
+    "durationMinutes",
+    "objectives",
+    "steps"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1,
+      "description": "结构版本。引擎只接受它明确支持的版本，未知版本必须拒绝加载。"
+    },
+    "contentVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "课程内容版本，用于判断进度记录是否与当前内容匹配。"
+    },
+    "courseId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "description": "课程标识，小写字母开头，仅含小写字母、数字与下划线。"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "worldId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "ageRange": {
+      "type": "string",
+      "enum": ["3-6"]
+    },
+    "durationMinutes": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 15,
+      "description": "预计时长（分钟）。幼儿注意力有限，超过 15 分钟的课程应拆分。"
+    },
+    "objectives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_]*$"
+      }
+    },
+    "assets": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/asset" }
+    },
+    "steps": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/step" }
+    }
+  },
+  "definitions": {
+    "asset": {
+      "type": "object",
+      "required": ["assetId", "location", "assetType"],
+      "additionalProperties": false,
+      "properties": {
+        "assetId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "location": { "type": "string", "minLength": 1 },
+        "assetType": {
+          "type": "string",
+          "enum": ["audio", "sprite", "prefab", "texture", "animation"]
+        }
+      }
+    },
+    "retryPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maxAttempts"],
+      "properties": {
+        "maxAttempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5,
+          "description": "超过后必须允许继续，不得阻断课程。"
+        },
+        "allowSkip": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否允许跳过。答错不得阻断课程，因此默认 true。"
+        }
+      }
+    },
+    "step": {
+      "type": "object",
+      "required": ["stepId", "type"],
+      "properties": {
+        "stepId": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "teacher_intro",
+            "word_learning",
+            "listening_choice",
+            "repeat_speech",
+            "drag_match",
+            "memory_cards",
+            "challenge",
+            "level_complete"
+          ]
+        },
+        "next": {
+          "type": ["string", "null"],
+          "description": "下一步骤 ID。null 表示课程在此结束；非空值必须引用存在的 stepId。"
+        },
+        "onCorrect": { "type": ["string", "null"] },
+        "onIncorrect": { "type": ["string", "null"] },
+        "retryPolicy": { "$ref": "#/definitions/retryPolicy" },
+        "teacherAction": {
+          "type": "string",
+          "enum": [
+            "Idle", "Greeting", "Speaking", "Listening",
+            "Thinking", "Encourage", "Celebrate", "Guide"
+          ]
+        },
+        "timeoutPolicy": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "idleTimeoutMs": {
+              "type": "integer",
+              "minimum": 1000,
+              "description": "无操作多久后给出提示（不是失败判定）。"
+            }
+          }
+        },
+        "audioId": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "word": { "type": "string", "pattern": "^[a-z]+$" },
+        "imageId": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+          "description": "幼儿一次最多呈现 4 个选项。"
+        },
+        "correctAnswer": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+        "pairs": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": ["leftId", "rightId"],
+            "additionalProperties": false,
+            "properties": {
+              "leftId": { "type": "string" },
+              "rightId": { "type": "string" }
+            }
+          }
+        },
+        "cardIds": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 8,
+          "items": { "type": "string" }
+        },
+        "subSteps": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "综合挑战引用的其他 stepId，按顺序执行。"
+        },
+        "reward": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "stars": { "type": "integer", "minimum": 0, "maximum": 3 }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "teacher_intro" } } },
+          "then": { "required": ["teacherAction", "next"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "word_learning" } } },
+          "then": { "required": ["word", "imageId", "audioId", "next"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "listening_choice" } } },
+          "then": { "required": ["audioId", "options", "correctAnswer", "next"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "repeat_speech" } } },
+          "then": { "required": ["word", "audioId", "next"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "drag_match" } } },
+          "then": { "required": ["pairs", "next"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "memory_cards" } } },
+          "then": { "required": ["cardIds", "next"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "challenge" } } },
+          "then": { "required": ["subSteps", "next"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "level_complete" } } },
+          "then": {
+            "required": ["reward"],
+            "properties": { "next": { "type": "null" } }
+          }
+        }
+      ]
+    }
+  }
+}
