@@ -1,0 +1,54 @@
+# Unity 工程生成物
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Unity 自动生成的解决方案与工程文件
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+.vs/
+.idea/
+
+# 资源导入缓存
+*.apk
+*.aab
+*.unitypackage
+*.app
+
+# 崩溃报告
+sysinfo.txt
+crashlytics-build.properties
+
+# 本地工具与下载缓存（体积大，可重新获取）
+tools/downloads/
+tools/AndroidSdk/
+tools/jdk17/
+tools/UnityEditor/
+tools/UnityHub/
+tools/Blender/
+
+# Blender 生成物
+Blender/*.blend1
+Blender/*.blend2
+
+# 操作系统与编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
