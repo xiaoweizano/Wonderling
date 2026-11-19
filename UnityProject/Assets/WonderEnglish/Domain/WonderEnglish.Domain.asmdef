@@ -1,0 +1,16 @@
+{
+    "name": "WonderEnglish.Domain",
+    "rootNamespace": "WonderEnglish.Domain",
+    "references": [
+        "WonderEnglish.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

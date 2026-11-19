@@ -24,10 +24,27 @@
 - JSON
 - sherpa-onnx（先做 Android 离线能力验证）
 
+## 开发环境
+
+工具链统一安装在 `F:\WonderEnglish\tools\`，与工程目录分离且不纳入版本管理。
+
+| 组件 | 版本 |
+|---|---|
+| Unity | 6000.0.85f2（6000.0 LTS）+ Android Build Support |
+| JDK | Temurin 17.0.20.1 LTS |
+| Android SDK | platform-tools 37.0.1、build-tools 34.0.0/35.0.0、platform android-35 |
+| Android NDK | 27.2.12479018（r27c） |
+| Gradle | 8.9 |
+| Blender | 4.5.16 LTS |
+
+环境变量通过 `source F:/WonderEnglish/tools/env.sh` 在当前 shell 内加载，不写入系统变量。
+详细结果与阻塞项见 `Documentation/reports/环境报告.md`。
+
 ## 目录
 - `CLAUDE.md`：Claude Code 项目规范与工作流
 - `Documentation/`：需求、架构、课程、动画、语音、数据库、Demo、任务和验收文档
-- `UnityProject/`：Unity 工程（初始化后创建）
+- `Documentation/reports/`：环境检查与构建报告
+- `UnityProject/`：Unity 工程
 - `AndroidPlugin/`：Kotlin 原生插件（技术验证通过后接入）
 - `Blender/`：源美术工程文件
 
@@ -35,4 +52,6 @@
 所有任务以 `Documentation/08-开发阶段与任务清单.md` 为进度唯一来源。完成任务必须记录代码、测试、构建和设备验证状态。
 
 ## 当前状态
-规划与架构基线已建立；Unity 工程、语音插件和 Demo 课程尚未实现。不要将规划文档误认为已交付功能。
+阶段 0 进行中：工具链已安装、工程骨架与程序集划分已建立、Git 基线已提交。
+**空白 APK 尚未构建成功**——Unity 许可证未激活，且无 Android 真机连接。
+课程功能、语音插件与 Demo 课程均未实现。不要将规划文档误认为已交付功能。

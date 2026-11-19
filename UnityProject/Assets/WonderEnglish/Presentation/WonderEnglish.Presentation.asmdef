@@ -1,0 +1,20 @@
+{
+    "name": "WonderEnglish.Presentation",
+    "rootNamespace": "WonderEnglish.Presentation",
+    "references": [
+        "WonderEnglish.Core",
+        "WonderEnglish.Domain",
+        "WonderEnglish.CourseEngine",
+        "WonderEnglish.Tasks",
+        "WonderEnglish.Infrastructure"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

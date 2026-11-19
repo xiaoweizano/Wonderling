@@ -1,0 +1,18 @@
+{
+    "name": "WonderEnglish.Infrastructure",
+    "rootNamespace": "WonderEnglish.Infrastructure",
+    "references": [
+        "WonderEnglish.Core",
+        "WonderEnglish.Domain",
+        "WonderEnglish.AndroidBridge"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

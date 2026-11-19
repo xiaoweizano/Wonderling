@@ -1,0 +1,17 @@
+{
+    "name": "WonderEnglish.CourseEngine",
+    "rootNamespace": "WonderEnglish.CourseEngine",
+    "references": [
+        "WonderEnglish.Core",
+        "WonderEnglish.Domain"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}
