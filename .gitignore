@@ -52,3 +52,6 @@ Blender/*.blend2
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# IDE 插件生成的跨项目追踪文件，内容与本项目无关
+.ai-code-tracking.json
